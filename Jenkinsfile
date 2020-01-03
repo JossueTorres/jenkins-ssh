@@ -83,12 +83,12 @@ node {
             // sshGet remote: remote, from: 'test.sh', into: 'test_new.sh', override: true
             // sshRemove remote: remote, path: 'test.sh'
             //sshCommand remote: remote, command: 'cat /proc/version'
-            sh "echo Iniciar descarga apache2"
-            sh "DEBIAN_FRONTEND='noninteractive' apt-get install -y  apache2 \
-                php libapache2-mod-php php-fpm \
-                apt-get install -y php-mysql php-gd \
-                && a2enmod proxy_fcgi setenvif && a2enconf php7.2-fpm"
-            sh "echo Finalizado"
+            sh "cat /proc/version && whoami"
+            // sh "DEBIAN_FRONTEND='noninteractive' apt-get install -y  apache2 \
+            //     php libapache2-mod-php php-fpm \
+            //     apt-get install -y php-mysql php-gd \
+            //     && a2enmod proxy_fcgi setenvif && a2enconf php7.2-fpm"
+            // sh "echo Finalizado"
         }
     }
 }

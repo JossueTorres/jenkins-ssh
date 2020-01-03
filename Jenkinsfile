@@ -94,8 +94,8 @@
 // }
 
 def remote = [:]
-remote.name = "node"
-remote.host = "localhost"
+remote.name = "localhost"
+remote.host = "127.0.0.1"
 remote.allowAnyHosts = true
 
 node {

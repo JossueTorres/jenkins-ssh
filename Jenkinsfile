@@ -6,11 +6,11 @@ pipeline {
 //   }
   agent any
   stages {
-    stage('Cloning Git') {
-      steps {
-        git 'http://github.com/JossueTorres/jenkins-ssh'
-      }
-    }
+    // stage('Cloning Git') {
+    //   steps {
+    //     git 'http://github.com/JossueTorres/jenkins-ssh'
+    //   }
+    // }
     stage('Conectar SSH'){
         def remote = [:]
         remote.name = "Configuración"

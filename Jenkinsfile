@@ -83,8 +83,7 @@ node {
             // sshGet remote: remote, from: 'test.sh', into: 'test_new.sh', override: true
             // sshRemove remote: remote, path: 'test.sh'
             //sshCommand remote: remote, command: 'cat /proc/version'
-            sh "ssh root@localhost"
-            sh "cat /proc/version && whoami"
+            sshCommand remote: remote, command: "cat /proc/version"
             // sh "DEBIAN_FRONTEND='noninteractive' apt-get install -y  apache2 \
             //     php libapache2-mod-php php-fpm \
             //     apt-get install -y php-mysql php-gd \

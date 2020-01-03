@@ -100,12 +100,8 @@ node{
     remote.user = 'root'
     remote.password = 'password'
     remote.allowAnyHosts = true
-    try {
-        stage('Remote SSH') {
-            sshCommand remote: remote, command: "ls -lrt"
-            sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
-        }
-    } catch {
-        sh{echo "catch"}
-    }    
+    stage('Remote SSH') {
+        sshCommand remote: remote, command: "ls -lrt"
+        sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
+    }   
 }

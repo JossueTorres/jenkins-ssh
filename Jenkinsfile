@@ -30,7 +30,11 @@ pipeline {
                             // sshGet remote: remote, from: 'abc.sh', into: 'bac.sh', override: true
                             // sshScript remote: remote, script: 'abc.sh'
                             // sshRemove remote: remote, path: 'abc.sh'
-                            sshCommand remote: remote, command: 'cat /proc/version'
+                            steps{
+                                script{
+                                    sshCommand remote: remote, command: 'cat /proc/version'
+                                }
+                            }                            
                         }
                     }
                 }

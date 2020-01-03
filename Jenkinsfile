@@ -70,6 +70,7 @@ remote.host = "localhost"
 remote.allowAnyHosts = true
 
 node {
+    checkout scm
     withCredentials([usernamePassword(credentialsId: 'sshUser', passwordVariable: 'password', usernameVariable: 'userName')]) {
         remote.user = userName
         remote.password = password

@@ -101,6 +101,8 @@
 // }
 node{
     sshagent(['sshuser']) {
-      sh 'whoami'
-  }
+      stage{
+        sshCommand remote: remote, command: "ls -lrt"
+      }  
+    }
 }

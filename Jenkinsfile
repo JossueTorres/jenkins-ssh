@@ -101,7 +101,7 @@
 // }
 
 node{
-    sshagent(credentials: ['sshUser']) {
+    sshagent(credentials: ['userssh']) {
       stage("SSH Steps Rocks!"){
         sh '''
           ssh -o StrictHostKeyChecking=no 127.0.0.1 

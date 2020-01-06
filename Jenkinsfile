@@ -19,7 +19,7 @@ node {
              
         }
         stage("Ejecutando..."){
-            sshScript remote: remote, script: '$WORKSPACE/jenkins-ssh/config.sh'
+            sshScript remote: remote, script: 'config.sh'
         }
     }
 }

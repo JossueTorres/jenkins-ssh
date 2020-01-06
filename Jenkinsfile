@@ -70,6 +70,7 @@ node{
     remote.host = '127.0.0.1'
     remote.user = 'root'
     remote.password = 'password'
+    remote.port = 22
     remote.allowAnyHosts = true
     stage('Remote SSH') {
       sshCommand remote: remote, command: "ls -lrt"

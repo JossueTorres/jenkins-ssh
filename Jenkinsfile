@@ -102,7 +102,7 @@
 
 node{
     sshagent(['sshuser']) {
-      stage{
+      stage("SSH Steps Rocks!"){
         sh '''
           whoami
         '''

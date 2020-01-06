@@ -4,7 +4,7 @@ remote.host = "172.17.0.6"
 remote.allowAnyHosts = true
 
 node {
-  
+
     withCredentials([usernamePassword(credentialsId: 'sshUser', passwordVariable: 'password', usernameVariable: 'userName')]) {
         remote.user = userName
         remote.password = password
@@ -22,6 +22,8 @@ node {
             sshCommand remote: remote, command: '''
                 DEBIAN_FRONTEND='noninteractive' apt-get install -y  apache2 php libapache2-mod-php php-fpm php-mysql php-gd 
                 a2enmod proxy_fcgi setenvif && a2enconf php7.2-fpm
+                service apache2 start
+                service php7.2-fpm start
             '''
         }
     }

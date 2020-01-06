@@ -27,11 +27,7 @@ node {
                 touch /var/www/html/info.php \ 
                 echo '<?php phpinfo();' >> /var/www/html/info.php
                 a2enmod rewrite
-                echo "ServerName localhost" >> /etc/apache2/apache2.conf
-                sed -i "/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/"" /etc/apache2/apache2.conf
-                chgrp -R www-data /var/www
-                find /var/www -type d -exec chmod 775 {} +
-                find /var/www -type f -exec chmod 664 {} +
+                
             '''
         }
     }

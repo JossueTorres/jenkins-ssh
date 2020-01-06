@@ -104,7 +104,7 @@ node{
     sshagent(credentials: ['userssh']) {
       stage("SSH Steps Rocks!"){
         sh '''
-          ssh -o 127.0.0.1 whoami
+          ssh -o StrictHostKeyChecking=no -l root 127.0.0.1 uname -a
         '''
       }  
     }

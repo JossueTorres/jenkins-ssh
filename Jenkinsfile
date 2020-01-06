@@ -17,8 +17,8 @@ node {
             //sshRemove remote: remote, path: 'test.sh'
             sshCommand remote: remote, command: '**** Iniciando Instalaciones remotas ****'
         }
-        stage("Ejecutando..."){
-            sshScript remote: remote, script: '$WORKSPACE/jenkins-ssh/config.sh'
-        }
+        // stage("Ejecutando..."){
+        //     sshScript remote: remote, script: '$WORKSPACE/jenkins-ssh/config.sh'
+        // }
     }
 }

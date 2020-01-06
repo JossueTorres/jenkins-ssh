@@ -127,7 +127,8 @@ node {
             sshPut remote: remote, from: 'test.sh', into: '.'
             sshCommand remote: remote, command: 'ls -al'
             // sshGet remote: remote, from: 'test.sh', into: 'test_new.sh', override: true
-            sshRemove remote: remote, path: 'test.sh'
+            //sshRemove remote: remote, path: 'test.sh'
+            
         }
     }
 }

@@ -4,9 +4,7 @@ remote.host = "172.17.0.6"
 remote.allowAnyHosts = true
 
 node {
-    git branch: 'master',
-    credentialsId: 'testuser',
-    url: 'https://github.com/JossueTorres/jenkins-ssh.git',
+  
     withCredentials([usernamePassword(credentialsId: 'sshUser', passwordVariable: 'password', usernameVariable: 'userName')]) {
         remote.user = userName
         remote.password = password

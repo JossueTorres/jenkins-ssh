@@ -104,7 +104,7 @@ node{
     sshagent(credentials: ['userssh']) {
       stage("SSH Steps Rocks!"){
         sh '''
-          ssh -o  whoami
+          ssh -o 127.0.0.1 whoami
         '''
       }  
     }

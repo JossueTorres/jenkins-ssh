@@ -83,29 +83,29 @@
 // remote.host = "127.0.0.1"
 // remote.allowAnyHosts = true
 
-// node {
-//     withCredentials([usernamePassword(credentialsId: 'sshUser', passwordVariable: 'password', usernameVariable: 'userName')]) {
-//         remote.user = userName
-//         remote.password = password
+node {
+    withCredentials([usernamePassword(credentialsId: 'sshUser', passwordVariable: 'password', usernameVariable: 'userName')]) {
+        remote.user = userName
+        remote.password = password
 
-//         stage("SSH Steps Rocks!") {
-//             // writeFile file: 'test.sh', text: 'ls'
+        stage("SSH Steps Rocks!") {
+            // writeFile file: 'test.sh', text: 'ls'
             
-//             // sshScript remote: remote, script: 'test.sh'
-//             // sshPut remote: remote, from: 'test.sh', into: '.'
-//             // sshGet remote: remote, from: 'test.sh', into: 'test_new.sh', override: true
-//             // sshRemove remote: remote, path: 'test.sh'
-//             sshCommand remote: remote, command: 'for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done'
-//         }
-//     }
-// }
-
-node{
-    sshagent(credentials: ['userssh']) {
-      stage("SSH Steps Rocks!"){
-        sh '''
-          ssh -o StrictHostKeyChecking=no -l root 172.17.0.6  uname -a
-        '''
-      }  
+            // sshScript remote: remote, script: 'test.sh'
+            // sshPut remote: remote, from: 'test.sh', into: '.'
+            // sshGet remote: remote, from: 'test.sh', into: 'test_new.sh', override: true
+            // sshRemove remote: remote, path: 'test.sh'
+            sshCommand remote: remote, command: 'for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done'
+        }
     }
 }
+
+// node{
+//     sshagent(credentials: ['userssh']) {
+//       stage("SSH Steps Rocks!"){
+//         sh '''
+//           ssh -o StrictHostKeyChecking=no -l root 172.17.0.6  uname -a
+//         '''
+//       }  
+//     }
+// }

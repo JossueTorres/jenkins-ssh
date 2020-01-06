@@ -84,7 +84,7 @@ remote.host = "127.0.0.1"
 remote.allowAnyHosts = true
 
 node {
-    withCredentials([usernamePassword(credentialsId: 'userssh', passwordVariable: 'password', usernameVariable: 'userName')]) {
+    withCredentials([usernamePassword(credentialsId: 'sshUser', passwordVariable: 'password', usernameVariable: 'userName')]) {
         remote.user = userName
         remote.password = password
 

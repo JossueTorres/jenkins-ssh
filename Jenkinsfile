@@ -99,7 +99,8 @@
 //         }
 //     }
 // }
-
-sshagent(['my-ssh-key']) {
-    sh 'whoami'
+node{
+    sshagent(['sshuser']) {
+      sh 'whoami'
+  }
 }

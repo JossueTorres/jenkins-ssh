@@ -18,11 +18,17 @@ node {
             // sshPut remote: remote, from: 'test.sh', into: '.'
             // sshCommand remote: remote, command: 'ls -al'
             // sshGet remote: remote, from: 'test.sh', into: 'test_new.sh', override: true
-            // sshRemove remote: remote, path: 'test.sh'
-             
+            // sshRemove remote: remote, path: 'test.sh'             
         }
         stage("Ejecutando..."){
-            sshScript remote: remote, script: 'config.sh'
+            sshCommand remote: remote, command: '''
+                #!/bin/bash
+
+                DEBIAN_FRONTEND='noninteractive' apt-get install -y  apache2 \ 
+                php libapache2-mod-php php-fpm \ 
+                php-mysql php-gd && a2enmod proxy_fcgi setenvif && a2enconf php7.2-fpm
+
+            '''
         }
     }
 }

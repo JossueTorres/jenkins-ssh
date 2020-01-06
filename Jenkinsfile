@@ -104,7 +104,7 @@ node{
     sshagent(['sshuser']) {
       stage("SSH Steps Rocks!"){
         sh '''
-          whoami
+          ssh -o StrictHostKeyChecking=no -l cloudbees 192.168.1.106 uname -a
         '''
       }  
     }

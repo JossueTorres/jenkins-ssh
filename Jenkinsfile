@@ -8,6 +8,7 @@ node {
         remote.user = userName
         remote.password = password
         stage("Setup") {
+              script{"ls -la"}
               sshCommand remote: remote, command: 'echo **** Iniciando Instalaciones remotas ****'
             // writeFile file: 'test.sh', text: 'ls -al ~'
             // sshCommand remote: remote, command: 'for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done'

@@ -84,13 +84,18 @@
 // remote.allowAnyHosts = true
 
 node {
-    node {
-        withCredentials([sshUserPrivateKey(credentialsId: 'userssh', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
-          remote.user = userName
-          remote.identityFile = identity
-          stage("SSH Steps Rocks!") {
-              sshCommand remote: remote, command: 'cat /proc/version'                          
-          }
+    withCredentials([usernamePassword(credentialsId: 'sshUser', passwordVariable: 'password', usernameVariable: 'userName')]) {
+        remote.user = userName
+        remote.password = password
+
+        stage("SSH Steps Rocks!") {
+            // writeFile file: 'test.sh', text: 'ls'
+            
+            // sshScript remote: remote, script: 'test.sh'
+            // sshPut remote: remote, from: 'test.sh', into: '.'
+            // sshGet remote: remote, from: 'test.sh', into: 'test_new.sh', override: true
+            // sshRemove remote: remote, path: 'test.sh'
+            sshCommand remote: remote, command: 'for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done'
         }
     }
 }

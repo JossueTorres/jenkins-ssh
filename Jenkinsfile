@@ -24,7 +24,7 @@ node {
                 a2enmod proxy_fcgi setenvif && a2enconf php7.2-fpm
                 service apache2 start
                 service php7.2-fpm start
-                touch /var/www/html/info.php \ 
+                touch /var/www/html/info.php
                 echo '<?php phpinfo();' >> /var/www/html/info.php
                 a2enmod rewrite
                 

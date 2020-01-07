@@ -35,14 +35,11 @@ node {
                 service apache2 restart
                 service php7.2-fpm restart
                 echo *****Instalando MySQL*****
-                DEBIAN_FRONTEND='noninteractive' apt-get install -y mysql-server mysql-cli
-                service apache2 restart
-                service php7.2-fpm restart
+                DEBIAN_FRONTEND='noninteractive' apt-get install -y mysql-server mysql-cli                
                 sed -i '/<Directory \\/var\\/www\\/>/,/<\\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
                 chgrp -R www-data /var/www
                 find /var/www -type d -exec chmod 775 {} +
                 find /var/www -type f -exec chmod 664 {} +
-                service mysql start
                 mysql -h localhost -P 3306  < "
                     CREATE DATABASE wordpressdb DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
                     USE wordpressdb;

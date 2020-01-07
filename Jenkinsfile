@@ -11,8 +11,8 @@ node {
         stage("Setup") {
               sshCommand remote: remote, command: 'echo ***** Iniciando Instalaciones remotas ***** && apt-get update'          
         }
-        stage("Configuración de servidor"){
-            if ($CONFIG_SERVER == 'true') {
+        if ($CONFIG_SERVER == 'true') {
+            stage("Configuración de servidor"){
                 sshCommand remote: remote, command: '''
                     echo *****Instalando Apache*****
                     DEBIAN_FRONTEND='noninteractive' apt-get install -y apache2 

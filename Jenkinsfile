@@ -47,16 +47,18 @@ node {
                 '''
             }            
         }
-        stage("Clonando repositorio"){
-            sshCommand remote: remote, command: '''
-                echo *****Clonando Repositorio git*****
-                cd /var/www/html
-                git -c http.sslVerify=false clone https://github.com/JossueTorres/wordpress-prueba.git
-                cd wordpress-prueba
-                echo *****Quitar la verificación ssl self-signed certificate*****
-                git config http.sslVerify false
-            '''
-        }
+        if($CLONE_REPO == 'true'){
+            stage("Clonando repositorio"){
+                sshCommand remote: remote, command: '''
+                    echo *****Clonando Repositorio git*****
+                    cd /var/www/html
+                    git -c http.sslVerify=false clone https://github.com/JossueTorres/wordpress-prueba.git
+                    cd wordpress-prueba
+                    echo *****Quitar la verificación ssl self-signed certificate*****
+                    git config http.sslVerify false
+                '''
+            }
+        }        
         stage("Restaurando Base de datos"){
             sshCommand remote: remote, command: '''
                 echo *****Restaurando la Base de Datos*****

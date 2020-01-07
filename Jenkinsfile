@@ -53,13 +53,13 @@ node {
             cd /var/www/html
             git -c http.sslVerify=false clone https://github.com/JossueTorres/jenkins-ssh.git
             cd jenkins-ssh
-            echo *****Quitar la verificación ssl (self-signed certificate)*****
+            echo *****Quitar la verificación ssl self-signed certificate*****
             git config http.sslVerify false
             '''
         }
         stage("Restaurando Base de datos"){
             sshCommand remote: remote, command: '''
-                
+
             '''
         }
         stage("Finalizando"){

@@ -9,7 +9,7 @@ node {
         remote.user = userName
         remote.password = password
         stage("Setup") {
-              sshCommand remote: remote, command: 'echo ***** Iniciando Instalaciones remotas *****'  
+              sshCommand remote: remote, command: 'echo ***** Iniciando Instalaciones remotas ***** && apt-get update'  
               writeFile file: 'config-wordpress.sql', text: "CREATE DATABASE IF NOT EXISTS wordpressdb DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;USE wordpressdb;GRANT ALL ON wordpressdb.* TO ' wordpressuser '@'localhost' IDENTIFIED BY 'password';FLUSH PRIVILEGES;"
               sshPut remote: remote, from: 'config-wordpress.sql', into: '.'
             // writeFile file: 'test.sh', text: 'ls -al ~'
@@ -43,7 +43,8 @@ node {
                 chgrp -R www-data /var/www
                 find /var/www -type d -exec chmod 775 {} +
                 find /var/www -type f -exec chmod 664 {} +
-                mysql -h localhost -P 3306  < "~/config-wordpress.sql"
+                echo *****Instalando git*****
+                apt-get install git
             '''
         }
         stage("Copiar archivos a servidor"){

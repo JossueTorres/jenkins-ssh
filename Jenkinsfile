@@ -52,7 +52,7 @@ node {
                 echo *****Clonando Repositorio git*****
                 cd /var/www/html
                 git -c http.sslVerify=false clone https://github.com/JossueTorres/wordpress-prueba.git
-                cd jenkins-ssh
+                cd wordpress-prueba
                 echo *****Quitar la verificación ssl self-signed certificate*****
                 git config http.sslVerify false
             '''

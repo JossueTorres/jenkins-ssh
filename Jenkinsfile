@@ -42,7 +42,6 @@ node {
                 chgrp -R www-data /var/www
                 find /var/www -type d -exec chmod 775 {} +
                 find /var/www -type f -exec chmod 664 {} +
-                chown -R mysql:mysql /var/lib/mysql /var/run/
                 service mysql start
                 mysql -h localhost -P 3306  < "
                     CREATE DATABASE wordpressdb DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;

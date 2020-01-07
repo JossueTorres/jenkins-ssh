@@ -9,9 +9,7 @@ node {
         remote.user = userName
         remote.password = password
         stage("Setup") {
-              sshCommand remote: remote, command: 'echo ***** Iniciando Instalaciones remotas ***** && apt-get update'  
-              writeFile file: 'config-wordpress.sql', text: "CREATE DATABASE IF NOT EXISTS wordpressdb DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;USE wordpressdb;GRANT ALL ON wordpressdb.* TO ' wordpressuser '@'localhost' IDENTIFIED BY 'password';FLUSH PRIVILEGES;"
-              sshPut remote: remote, from: 'config-wordpress.sql', into: '.'
+              sshCommand remote: remote, command: 'echo ***** Iniciando Instalaciones remotas ***** && apt-get update'                
             // writeFile file: 'test.sh', text: 'ls -al ~'
             // sshCommand remote: remote, command: 'for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done'
             // sshScript remote: remote, script: 'test.sh'
@@ -44,14 +42,12 @@ node {
                 find /var/www -type d -exec chmod 775 {} +
                 find /var/www -type f -exec chmod 664 {} +
                 echo *****Instalando git*****
-                apt-get install git
+                DEBIAN_FRONTEND='noninteractive' apt-get install -y git
             '''
         }
         stage("Copiar archivos a servidor"){
-
         }
-        stage("Finalizando"){
-            sshRemove remote: remote, path: 'config-wordpress.sql'             
+        stage("Finalizando"){            
         }
     }
 }

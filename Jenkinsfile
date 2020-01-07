@@ -62,7 +62,7 @@ node {
         stage("Restaurando Base de datos"){
             sshCommand remote: remote, command: '''
                 echo *****Restaurando la Base de Datos*****
-                mysql -h localhost -P 3306  < "/var/www/html/wordpress-prueba/data/restore 07-01-2020"
+                mysql -h localhost -P 3306  < /var/www/html/wordpress-prueba/data/restore 07-01-2020
             '''
         }
         stage("Finalizando"){

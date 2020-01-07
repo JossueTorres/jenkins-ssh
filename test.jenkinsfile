@@ -9,7 +9,14 @@ node {
         remote.user = userName
         remote.password = password
         stage("Setup") {
-              sshCommand remote: remote, command: 'echo ***** Iniciando Instalaciones remotas ***** && apt-get update'          
+              sshCommand remote: remote, command: 'echo ***** Iniciando Instalaciones remotas ***** && apt-get update'                
+            // writeFile file: 'test.sh', text: 'ls -al ~'
+            // sshCommand remote: remote, command: 'for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done'
+            // sshScript remote: remote, script: 'test.sh'
+            // sshPut remote: remote, from: 'test.sh', into: '.'
+            // sshCommand remote: remote, command: 'ls -al'
+            // sshGet remote: remote, from: 'test.sh', into: 'test_new.sh', override: true
+            // sshRemove remote: remote, path: 'test.sh'             
         }
         stage("Configuración de servidor"){
             if ($CONFIG_SERVER == 'true') {
@@ -62,7 +69,6 @@ node {
         stage("Restaurando Base de datos"){
             sshCommand remote: remote, command: '''
                 echo *****Restaurando la Base de Datos*****
-                mysql -h localhost -P 3306  < "/var/www/html/wordpress-prueba/data/restore 07-01-2020"
             '''
         }
         stage("Finalizando"){

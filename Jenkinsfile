@@ -10,7 +10,7 @@ node {
         remote.password = password
         stage("Setup") {
               sshCommand remote: remote, command: 'echo ***** Iniciando Instalaciones remotas *****'  
-              writeFile file: 'config-wordpress.sql', text: 'CREATE DATABASE IF NOT EXISTS wordpressdb DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;USE wordpressdb;GRANT ALL ON wordpressdb.* TO ' wordpressuser '@'localhost' IDENTIFIED BY 'password';FLUSH PRIVILEGES;'            
+              writeFile file: 'config-wordpress.sql', text: "CREATE DATABASE IF NOT EXISTS wordpressdb DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;USE wordpressdb;GRANT ALL ON wordpressdb.* TO ' wordpressuser '@'localhost' IDENTIFIED BY 'password';FLUSH PRIVILEGES;"
               sshPut remote: remote, from: 'config-wordpress.sql', into: '.'
             // writeFile file: 'test.sh', text: 'ls -al ~'
             // sshCommand remote: remote, command: 'for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done'

@@ -62,6 +62,7 @@ node {
         stage("Obteniendo Cambios del Repositorio"){
             sshCommand remote: remote, command: '''
                 echo *****Haciendo Pull a Origin*****
+                cd /var/www/html/wordpress-prueba
                 git pull origin master
             '''
         }     

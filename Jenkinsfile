@@ -19,16 +19,45 @@ node {
             // sshRemove remote: remote, path: 'test.sh'             
         }
         stage("Ejecutando..."){
-            sshCommand remote: remote, command: '''
-                DEBIAN_FRONTEND='noninteractive' apt-get install -y  apache2 php libapache2-mod-php php-fpm php-mysql php-gd 
+            step{
+                sshCommand remote: remote, command: ''' echo *****Instalando Apache*****
+                DEBIAN_FRONTEND='noninteractive' apt-get install -y apache2                                             
+            '''
+            }
+            step{
+                sshCommand remote: remote, command: ''' echo *****Instalando php 7.2*****
+                DEBIAN_FRONTEND='noninteractive' apt-get install -y php libapache2-mod-php php-fpm php-mysql php-gd                                            
+            '''
+            }
+            step{
+                sshCommand remote: remote, command: ''' echo *****Ininicializando servicios*****
                 a2enmod proxy_fcgi setenvif && a2enconf php7.2-fpm
                 service apache2 start
                 service php7.2-fpm start
+            '''
+            }
+            step{
+                sshCommand remote: remote, command: ''' echo *****Creando archivo prueba*****
                 touch /var/www/html/info.php
                 echo '<?php phpinfo();' >> /var/www/html/info.php
                 a2enmod rewrite
-                
             '''
+            }
+            step{
+                sshCommand remote: remote, command: ''' echo *****Reiniciando servicios*****
+                service apache2 restart
+                service php7.2-fpm restart
+            '''
+            }
+            // sshCommand remote: remote, command: '''
+            //     DEBIAN_FRONTEND='noninteractive' apt-get install -y  apache2 php libapache2-mod-php php-fpm php-mysql php-gd 
+            //     a2enmod proxy_fcgi setenvif && a2enconf php7.2-fpm
+            //     service apache2 start
+            //     service php7.2-fpm start
+            //     touch /var/www/html/info.php
+            //     echo '<?php phpinfo();' >> /var/www/html/info.php
+            //     a2enmod rewrite                
+            // '''
         }
     }
 }

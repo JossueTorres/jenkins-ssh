@@ -31,6 +31,7 @@ node {
                     echo *****Instalando MySQL*****
                     DEBIAN_FRONTEND='noninteractive' apt-get install -y mysql-server
                     service mysql start
+                    chown -R mysql:mysql /var/lib/mysql /var/run/
                     sed -i '/<Directory \\/var\\/www\\/>/,/<\\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
                     chgrp -R www-data /var/www
                     find /var/www -type d -exec chmod 775 {} +
@@ -62,7 +63,7 @@ node {
         stage("Restaurando Base de datos"){
             sshCommand remote: remote, command: '''
                 echo *****Restaurando la Base de Datos*****
-                mysql -h localhost -P 3306  < /var/www/html/wordpress-prueba/data/restore 07-01-2020
+                mysql -h localhost -P 3306  < '/var/www/html/wordpress-prueba/data/restore 07-01-2020'
             '''
         }
         stage("Finalizando"){

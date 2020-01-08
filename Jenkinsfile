@@ -4,7 +4,6 @@ remote.host = "172.17.0.8"
 remote.allowAnyHosts = true
 
 node {
-
     withCredentials([usernamePassword(credentialsId: 'sshUser', passwordVariable: 'password', usernameVariable: 'userName')]) {
         remote.user = userName
         remote.password = password

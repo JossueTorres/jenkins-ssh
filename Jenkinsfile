@@ -60,13 +60,15 @@ node {
                 cd /var/www/html/wordpress-prueba
                 git pull origin master
             '''
-        }     
-        stage("Restaurando Base de datos"){
-            sshCommand remote: remote, command: '''
-                echo *****Restaurando la Base de Datos*****
-                mysql -h localhost -P 3306 -v < /var/www/html/wordpress-prueba/data/restore-07-01-2020.sql
-            '''
         }
+        if($RESTORE_DB == 'true'){
+            stage("Restaurando Base de datos"){
+            sshCommand remote: remote, command: '''
+                    echo *****Restaurando la Base de Datos*****
+                    mysql -h localhost -P 3306 -v < /var/www/html/wordpress-prueba/data/restore-07-01-2020.sql
+                '''
+            }
+        }        
         stage("Finalizando"){
             sh'echo *****Finalizando la ejecución*****'
         }

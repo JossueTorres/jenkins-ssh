@@ -30,8 +30,7 @@ node {
                     service php7.2-fpm restart
                     echo *****Instalando MySQL*****
                     DEBIAN_FRONTEND='noninteractive' apt-get install -y mysql-server
-                    service mysql start
-                    chown -R mysql:mysql /var/lib/mysql /var/run/
+                    service mysql start                    
                     sed -i '/<Directory \\/var\\/www\\/>/,/<\\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
                     chgrp -R www-data /var/www
                     find /var/www -type d -exec chmod 775 {} +

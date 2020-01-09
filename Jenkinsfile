@@ -12,7 +12,7 @@ node {
         }
         if ($CONFIG_SERVER == 'true') {
             stage("Configuración de servidor"){
-                steps{
+                //steps{
                     sshScript remote: remote, script: '/var/jenkins_home/config.sh'
                     // sshCommand remote: remote, command: '''
                     //     echo *****Instalando Apache*****
@@ -39,7 +39,7 @@ node {
                     //     echo *****Instalando git*****
                     //     DEBIAN_FRONTEND='noninteractive' apt-get install -y git
                     // '''
-                }                
+                //}                
             }            
         }
         if($CLONE_REPO == 'true'){

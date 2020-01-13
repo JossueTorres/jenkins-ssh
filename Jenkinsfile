@@ -77,7 +77,7 @@ node {
 
         node {
             stage('SCM') {
-                git 'https://github.com/foo/bar.git'
+                git 'https://github.com/JossueTorres/jenkins-ssh.git'
             }
             stage('SonarQube analysis') {
                 def scannerHome = tool 'SonarScanner 4.2.0.1873';

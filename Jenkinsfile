@@ -1,6 +1,6 @@
 def remote = [:]
-remote.name = "wordpress_ser"
-remote.host = "172.17.0.4"
+remote.name = "wordpress_server"
+remote.host = "172.17.0.3"
 remote.allowAnyHosts = true
 
 node {
@@ -78,7 +78,7 @@ node {
                 }
             }
         }
-        
+
         if($RESTORE_DB == 'true'){
             stage("Restaurando Base de datos"){
             sshCommand remote: remote, command: '''

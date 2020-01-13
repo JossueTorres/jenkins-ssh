@@ -61,24 +61,19 @@ node {
                 git pull origin master
             '''
         }
+
         // Sonar Stages
-        stage("build & SonarQube analysis") {
+        stage("SonarQube analysis") {
             node {
-                withSonarQubeEnv('Sonar server') {
-                    sh 'echo sonar-test'
-                    timeout(time: 1, unit: 'HOURS') {
-                    def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                        }
-                    }
+                withSonarQubeEnv('SonarQube') {
+                    sh "/opt/sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner"   
+                }
+                def qualitygate = waitForQualityGate()
+                if (qualitygate.status != "OK") {
+                    error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
                 }
             }
         }
-
-        // stage("Quality Gate"){
-            
-        // }
 
         if($RESTORE_DB == 'true'){
             stage("Restaurando Base de datos"){

@@ -63,14 +63,26 @@ node {
         }
 
         // Sonar Stages
-        stage("SonarQube analysis") {
-            node {
-                withSonarQubeEnv('SonarQube') {
-                    sh "/opt/sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner"   
-                }
-                def qualitygate = waitForQualityGate()
-                if (qualitygate.status != "OK") {
-                    error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
+        // stage("SonarQube analysis") {
+        //     node {
+        //         withSonarQubeEnv('SonarQube') {
+        //             sh "/opt/sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner"   
+        //         }
+        //         def qualitygate = waitForQualityGate()
+        //         if (qualitygate.status != "OK") {
+        //             error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
+        //         }
+        //     }
+        // }
+
+        node {
+            stage('SCM') {
+                git 'https://github.com/foo/bar.git'
+            }
+            stage('SonarQube analysis') {
+                def scannerHome = tool 'SonarScanner 4.2.0.1873';
+                withSonarQubeEnv() { // If you have configured more than one global server connection, you can specify its name
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }

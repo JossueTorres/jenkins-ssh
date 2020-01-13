@@ -80,7 +80,8 @@ node {
                 git 'https://github.com/JossueTorres/jenkins-ssh.git'
             }
             stage('SonarQube analysis') {
-                def scannerHome = tool 'SonarScanner 4.2.0.1873';
+
+                def scannerHome = tool 'SonarScanner 4.2';
                 withSonarQubeEnv() { // If you have configured more than one global server connection, you can specify its name
                     sh "${scannerHome}/bin/sonar-scanner"
                 }

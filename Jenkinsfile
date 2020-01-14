@@ -1,6 +1,6 @@
 def remote = [:]
 remote.name = "wordpress_server"
-remote.host = "172.17.0.3"
+remote.host = "172.17.0.2"
 remote.allowAnyHosts = true
 
 node {

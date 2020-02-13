@@ -1,5 +1,5 @@
 def remote = [:]
-remote.name = "wordpress_server"
+remote.name = "ubu_ser"
 remote.host = "172.17.0.2"
 remote.allowAnyHosts = true
 

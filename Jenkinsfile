@@ -7,6 +7,9 @@ node {
     withCredentials([usernamePassword(credentialsId: 'sshUser', passwordVariable: 'password', usernameVariable: 'userName')]) {
         remote.user = userName
         remote.password = password
+        stage("Enviar notificación"){
+            emailext body: 'Este es un correo de prueba', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Jenkins - Test', to: 'ossue97@gmail.com'
+        }
         stage("Setup") {
               sshCommand remote: remote, command: 'echo ***** Iniciando Instalaciones remotas ***** && apt-get update'          
         }

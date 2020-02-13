@@ -83,13 +83,13 @@ node {
             stage('SCM') {
                 git 'https://github.com/JossueTorres/jenkins-ssh.git'
             }
-            stage('SonarQube analysis') {
+            // stage('SonarQube analysis') {
 
-                def scannerHome = tool 'LocalSonarScanner';
-                withSonarQubeEnv() { // If you have configured more than one global server connection, you can specify its name
-                    sh "${scannerHome}/sonar-scanner"
-                }
-            }
+            //     def scannerHome = tool 'LocalSonarScanner';
+            //     withSonarQubeEnv() { // If you have configured more than one global server connection, you can specify its name
+            //         sh "${scannerHome}/sonar-scanner"
+            //     }
+            // }
         }
 
         if($RESTORE_DB == 'true'){
